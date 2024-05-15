@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,6 +12,10 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../core/store/app.state';
+import { login } from '../../core/store/auth/auth.action';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -28,6 +32,11 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
   styleUrl: './login.component.less',
 })
 export class LoginComponent {
+  constructor(
+    private fb: NonNullableFormBuilder,
+    private store: Store<AppState>
+  ) {}
+
   validateForm: FormGroup<{
     userName: FormControl<string>;
     password: FormControl<string>;
@@ -40,7 +49,17 @@ export class LoginComponent {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
+      let data = this.validateForm.value;
+      if (data) {
+        this.store.dispatch(
+          login({
+            user: {
+              username: data.userName || '',
+              password: data.password || '',
+            },
+          })
+        );
+      }
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
@@ -50,6 +69,4 @@ export class LoginComponent {
       });
     }
   }
-
-  constructor(private fb: NonNullableFormBuilder) {}
 }
