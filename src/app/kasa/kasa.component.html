@@ -1,0 +1,52 @@
+<nz-layout class="kasa-layout">
+  <nz-header class="kasa-header">Header</nz-header>
+  <nz-content class="kasa-content">
+    <div nz-row>
+      <div nz-col nzSpan="24" style="padding: 10px">
+        <div
+          nz-flex
+          [nzVertical]="false"
+          [nzGap]="'small'"
+          [nzWrap]="'nowrap'"
+          class="kasa-category"
+        >
+          @for (item of [0,1,2,3]; track [0,1,2,3]) {
+          <nz-card class="kasa-card-category">
+            <p>{{ item }}</p>
+          </nz-card>
+          }
+        </div>
+        <div nz-flex [nzVertical]="false" [nzGap]="'small'" [nzWrap]="'wrap'">
+          @for (item of list; track list) {
+          <nz-card class="kasa-card-item" (click)="trigerDrawer()">
+            <p>{{ item }}</p>
+          </nz-card>
+          }
+        </div>
+      </div>
+    </div>
+  </nz-content>
+  <nz-drawer
+    [nzClosable]="true"
+    [nzVisible]="isDrawered"
+    nzPlacement="right"
+    nzTitle="Basic Drawer"
+    [nzWidth]="'95vw'"
+    [nzFooter]="footerTpl"
+    (nzOnClose)="trigerDrawer()"
+  >
+    <ng-container *nzDrawerContent>
+      <div nz-row>
+        <div nz-col [nzXs]="24" [nzSm]="12">left</div>
+        <div nz-col [nzXs]="24" [nzSm]="12">right</div>
+      </div>
+    </ng-container>
+    <ng-template #footerTpl>
+      <div style="float: right">
+        <button nz-button (click)="trigerDrawer()">Cancel</button>
+        <button nz-button (click)="trigerDrawer()">Submit</button>
+      </div>
+    </ng-template>
+  </nz-drawer>
+  <nz-footer class="kasa-footer">Made by Hatsolutions</nz-footer>
+</nz-layout>

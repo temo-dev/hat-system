@@ -8,7 +8,7 @@ export interface AuthState {
 
 const initialState: AuthState = {
   isLoading: false,
-  isAuthenticated: false,
+  isAuthenticated: true,
   username: '',
 };
 
