@@ -24,6 +24,6 @@ import { AuthComponent } from './auth/auth.component';
 })
 export class AppComponent {
   user = {
-    isLogined: false,
+    isLogined: true,
   };
 }
