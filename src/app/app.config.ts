@@ -16,7 +16,6 @@ import { provideHttpClient } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { CoreModule } from './core/core.module';
-import { provideServiceWorker } from '@angular/service-worker';
 
 registerLocaleData(en);
 
@@ -31,9 +30,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     importProvidersFrom(CoreModule),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideServiceWorker('ngsw-worker.js', {
-        enabled: !isDevMode(),
-        registrationStrategy: 'registerWhenStable:30000'
-    })
-],
+  ],
 };
