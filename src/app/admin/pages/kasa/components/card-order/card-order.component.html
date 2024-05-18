@@ -1,0 +1,45 @@
+<div class="card-container">
+  <nz-card
+    style="width: 300px"
+    [nzActions]="[actionPay, actionEdit, actionEllipsis]"
+  >
+    <nz-card-meta
+      [nzTitle]="titleTable"
+      [nzDescription]="descriptionTable"
+    ></nz-card-meta>
+  </nz-card>
+  <ng-template #titleTable>
+    <div nz-flex [nzVertical]="false" [nzJustify]="'space-between'">
+      <div>Tableno: 2A</div>
+      <div>10000kc</div>
+    </div>
+  </ng-template>
+  <ng-template #descriptionTable>
+    <div nz-flex [nzVertical]="false" [nzJustify]="'space-between'">
+      <div>Dine in</div>
+      <div>14h00</div>
+    </div>
+  </ng-template>
+  <ng-template #actionPay>
+    <span nz-icon nzType="red-envelope"></span>
+  </ng-template>
+  <ng-template #actionEdit>
+    <span nz-icon nzType="edit" (click)="triggerDraw()"></span>
+  </ng-template>
+  <ng-template #actionEllipsis>
+    <span nz-icon nzType="ellipsis"></span>
+  </ng-template>
+  <nz-drawer
+    [nzVisible]="isDrawed"
+    nzPlacement="right"
+    nzTitle="Tableno: 2A"
+    nzWidth="50vw"
+    [nzClosable]="true"
+    [nzMaskClosable]="true"
+    (nzOnClose)="triggerDraw()"
+  >
+    <ng-container *nzDrawerContent>
+      <app-payment-order></app-payment-order>
+    </ng-container>
+  </nz-drawer>
+</div>

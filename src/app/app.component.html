@@ -1,6 +1,5 @@
 <div *ngIf="isLoginned == true; else noAdmin">
-  <!-- <app-admin></app-admin> -->
-  <app-kasa></app-kasa>
+  <app-admin></app-admin>
 </div>
 <ng-template #noAdmin>
   <app-auth></app-auth>

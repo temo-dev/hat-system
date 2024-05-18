@@ -10,7 +10,6 @@ import { AppState } from './core/store/app.state';
 import { Store, select } from '@ngrx/store';
 import { isAuthSelector } from './core/store/auth/auth.selector';
 import { Observable } from 'rxjs';
-import { KasaComponent } from './kasa/kasa.component';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +22,6 @@ import { KasaComponent } from './kasa/kasa.component';
     NzMenuModule,
     AdminComponent,
     AuthComponent,
-    KasaComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: [],

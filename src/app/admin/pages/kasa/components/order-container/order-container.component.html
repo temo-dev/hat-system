@@ -1,0 +1,20 @@
+<div>
+  <nz-tabset>
+    <nz-tab nzTitle="All">
+      <div
+        class="order-container"
+        nz-flex
+        [nzVertical]="false"
+        [nzWrap]="'wrap'"
+        [nzJustify]="'space-between'"
+      >
+        @for (item of [0,1,2,3,4,5,6,7,8]; track [0,1,2,3]) {
+        <app-card-order></app-card-order>
+        }
+      </div>
+    </nz-tab>
+    <nz-tab nzTitle="Dine in">Content of Tab Pane 2</nz-tab>
+    <nz-tab nzTitle="To go">Content of Tab Pane 3</nz-tab>
+    <nz-tab nzTitle="Delivery">Content of Tab Pane 3</nz-tab>
+  </nz-tabset>
+</div>
