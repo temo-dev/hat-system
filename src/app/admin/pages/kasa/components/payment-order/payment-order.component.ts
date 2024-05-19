@@ -1,51 +1,14 @@
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { Component, OnInit } from '@angular/core';
-
-interface ItemData {
-  id: number;
-  item: string;
-  qty: number;
-  price: number;
-}
+import { ItemData } from '../../../../../core/models/kasa.model';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-payment-order',
   standalone: true,
-  imports: [NzTableModule],
-  template: `
-    <nz-table
-      #rowSelectionTable
-      [nzData]="listOfData"
-      (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
-    >
-      <thead>
-        <tr>
-          <th
-            [nzSelections]="listOfSelection"
-            [(nzChecked)]="checked"
-            [nzIndeterminate]="indeterminate"
-            (nzCheckedChange)="onAllChecked($event)"
-          ></th>
-          <th>Items</th>
-          <th>Qty</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (data of rowSelectionTable.data; track data) {
-        <tr>
-          <td
-            [nzChecked]="setOfCheckedId.has(data.id)"
-            (nzCheckedChange)="onItemChecked(data.id, $event)"
-          ></td>
-          <td>{{ data.item }}</td>
-          <td>{{ data.qty }}</td>
-          <td>{{ data.price }}kc</td>
-        </tr>
-        }
-      </tbody>
-    </nz-table>
-  `,
+  imports: [NzTableModule, NzInputNumberModule, FormsModule],
+  templateUrl: 'payment-order.component.html',
 })
 export class PaymentOrderComponent implements OnInit {
   listOfSelection = [
@@ -55,30 +18,13 @@ export class PaymentOrderComponent implements OnInit {
         this.onAllChecked(true);
       },
     },
-    {
-      text: 'Select Odd Row',
-      onSelect: () => {
-        this.listOfCurrentPageData.forEach((data, index) =>
-          this.updateCheckedSet(data.id, index % 2 !== 0)
-        );
-        this.refreshCheckedStatus();
-      },
-    },
-    {
-      text: 'Select Even Row',
-      onSelect: () => {
-        this.listOfCurrentPageData.forEach((data, index) =>
-          this.updateCheckedSet(data.id, index % 2 === 0)
-        );
-        this.refreshCheckedStatus();
-      },
-    },
   ];
   checked = false;
   indeterminate = false;
   listOfCurrentPageData: readonly ItemData[] = [];
   listOfData: readonly ItemData[] = [];
   setOfCheckedId = new Set<number>();
+  demoValue: number = 0;
 
   updateCheckedSet(id: number, checked: boolean): void {
     if (checked) {
@@ -119,7 +65,7 @@ export class PaymentOrderComponent implements OnInit {
     this.listOfData = new Array(10).fill(0).map((_, index) => ({
       id: index,
       item: `Zorro Coffee ${index}`,
-      qty: 32,
+      qty: this.demoValue,
       price: index * 100,
     }));
   }

@@ -4,6 +4,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { PaymentOrderComponent } from '../payment-order/payment-order.component';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 @Component({
   selector: 'app-card-order',
   standalone: true,
@@ -12,6 +14,8 @@ import { PaymentOrderComponent } from '../payment-order/payment-order.component'
     NzIconModule,
     NzFlexModule,
     NzDrawerModule,
+    NzTypographyModule,
+    NzButtonModule,
     PaymentOrderComponent,
   ],
   templateUrl: './card-order.component.html',

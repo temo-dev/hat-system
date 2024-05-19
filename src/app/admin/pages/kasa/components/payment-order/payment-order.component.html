@@ -1,0 +1,39 @@
+<nz-table
+  #rowSelectionTable
+  [nzData]="listOfData"
+  (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+>
+  <thead>
+    <tr>
+      <th
+        [nzSelections]="listOfSelection"
+        [(nzChecked)]="checked"
+        [nzIndeterminate]="indeterminate"
+        (nzCheckedChange)="onAllChecked($event)"
+      ></th>
+      <th>Items</th>
+      <th>Qty</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (data of rowSelectionTable.data; track data) {
+    <tr>
+      <td
+        [nzChecked]="setOfCheckedId.has(data.id)"
+        (nzCheckedChange)="onItemChecked(data.id, $event)"
+      ></td>
+      <td>{{ data.item }}</td>
+      <td>
+        <nz-input-number
+          [(ngModel)]="demoValue"
+          [nzMin]="1"
+          [nzMax]="10"
+          [nzStep]="1"
+        ></nz-input-number>
+      </td>
+      <td>{{ data.price }}kc</td>
+    </tr>
+    }
+  </tbody>
+</nz-table>
