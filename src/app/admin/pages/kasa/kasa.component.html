@@ -1,3 +1,15 @@
-<h1>On going</h1>
-<div>Search</div>
+<div nz-flex nzJustify="space-between">
+  <h1>On going</h1>
+  <button nz-button nzType="primary" nzSearch>
+    <span nz-icon nzType="plus" nzTheme="outline"></span>Add Table
+  </button>
+</div>
+<nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+  <input type="text" nz-input placeholder="serach name table" />
+</nz-input-group>
+<ng-template #suffixIconButton>
+  <button nz-button nzType="primary" nzSearch>
+    <span nz-icon nzType="search"></span>
+  </button>
+</ng-template>
 <app-order-container></app-order-container>
